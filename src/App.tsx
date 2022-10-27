@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import {TodoList} from "./TodoList";
 
@@ -8,30 +8,46 @@ export type TaskType = {
     isDone: boolean
 }
 
+export type filterValuesType = "All" | "Active" | "Completed"
+
 function App() {
-   /* const todoListTitle_1 = "What to learn"
-    const todoListTitle_2 = "Songs"*/
 
-    const todoListTitle = [
-        {id:1, title:"What to learn" },
-        {id:2, title:"Songs" },
-    ]
-
-    const tasks1: Array<TaskType>= [
+    let [tasks, setTasks] = useState([
         {id: 1, title: "HTML&CSS", isDone: true},
         {id: 2, title: "JS", isDone: true},
         {id: 3, title: "ReactJS", isDone: false},
-    ]
-    const tasks2: Array<TaskType> = [
-        {id: 1, title: "MUTTER", isDone: true},
-        {id: 2, title: "Ich Will", isDone: false},
-        {id: 3, title: "RAMMSTEIN", isDone: false},
-    ]
+        {id: 4, title: "Rest API", isDone: false},
+        {id: 5, title: "graphGL", isDone: false},
+    ])
+
+    function removeTask(id: number) {
+        let filteredTasks = tasks.filter(task => task.id !== id)
+        setTasks(filteredTasks)
+    }
+
+    let [filter, setFilter] = useState<filterValuesType>("All")
+
+    let tasksForTodolist = tasks
+
+    if (filter === "Active") {
+        tasksForTodolist = tasks.filter(task => task.isDone === false) //!task.isDone
+    }
+    if (filter === "Completed") {
+        tasksForTodolist = tasks.filter(task => task.isDone === true)
+    }
+
+    function changeFilter(value: "All" | "Active" | "Completed") {
+        setFilter(value)
+    }
 
     return (
         <div className="App">
-            <TodoList title={todoListTitle[0].title} tasks={tasks1}/>
-            <TodoList title={todoListTitle[1].title} tasks={tasks2}/>
+            <TodoList title="What to learn"
+                      tasks={tasksForTodolist}
+                      removeTask={removeTask}
+                      changeFilter={changeFilter}
+
+            />
         </div>
     )
 }
