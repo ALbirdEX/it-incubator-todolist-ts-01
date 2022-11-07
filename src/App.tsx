@@ -12,7 +12,7 @@ export type filterValuesType = "All" | "Active" | "Completed"
 
 function App() {
 
-    let [tasks, setTasks] = useState([
+    let [tasks, setTasks] = useState<TaskType[]>([
         {id: 1, title: "HTML&CSS", isDone: true},
         {id: 2, title: "JS", isDone: true},
         {id: 3, title: "ReactJS", isDone: false},
@@ -20,24 +20,24 @@ function App() {
         {id: 5, title: "graphGL", isDone: false},
     ])
 
+    let [filter, setFilter] = useState<filterValuesType>("All")
+
     function removeTask(id: number) {
-        let filteredTasks = tasks.filter(task => task.id !== id)
-        setTasks(filteredTasks)
+        // let filteredTasks = tasks.filter(task => task.id !== id) - убрал переменную
+        setTasks(tasks.filter(task => task.id !== id))
     }
 
-    let [filter, setFilter] = useState<filterValuesType>("All")
+    function changeFilter(value: filterValuesType) {  //"All" | "Active" | "Completed"
+        setFilter(value)
+    }
 
     let tasksForTodolist = tasks
 
     if (filter === "Active") {
-        tasksForTodolist = tasks.filter(task => task.isDone === false) //!task.isDone
+        tasksForTodolist = tasks.filter(task => !task.isDone) //task.isDone === false
     }
     if (filter === "Completed") {
-        tasksForTodolist = tasks.filter(task => task.isDone === true)
-    }
-
-    function changeFilter(value: "All" | "Active" | "Completed") {
-        setFilter(value)
+        tasksForTodolist = tasks.filter(task => task.isDone) //task.isDone === true
     }
 
     return (
