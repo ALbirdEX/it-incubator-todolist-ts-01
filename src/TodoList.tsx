@@ -64,18 +64,17 @@ export function TodoList(props: TodoListPropsType) {
             <ol>
                 {props.tasks.map((task) => {
 
-                    const removeTaskHandler = () => {props.removeTask(task.id)}
-                    const TaskStatusHandler = (event: ChangeEvent<HTMLInputElement>) => {
-                        let newIsDoneValue = event.currentTarget.checked
-                        console.log(newIsDoneValue)
-                        props.changeTaskStatus(task.id, newIsDoneValue)
-                    }
+                        const removeTaskHandler = () => {props.removeTask(task.id)}
+                        const taskStatusHandler = (event: ChangeEvent<HTMLInputElement>) => {
+                            let newIsDoneValue = event.currentTarget.checked
+                            props.changeTaskStatus(task.id, newIsDoneValue)
+                        }
 
                         return (
-                            <li key={task.id} className={task.isDone? "is-done" : ""}>
+                            <li key={task.id} className={task.isDone ? "is-done" : ""}>
                                 <input type="checkbox"
                                        checked={task.isDone}
-                                       onChange={TaskStatusHandler}
+                                       onChange={taskStatusHandler}
                                 />
                                 <span>{task.title}</span>
                                 <button onClick={removeTaskHandler}><span role="img" aria-label="Delete">❌</span></button>
@@ -86,12 +85,12 @@ export function TodoList(props: TodoListPropsType) {
                 }
             </ol>
             <div>
-                <button className={props.filter === "All" ? "active-filter" : ""}
-                        onClick={onAllClickHandler}>All<span role="img" aria-label="Checked">✔</span></button>
-                <button className={props.filter === "Active" ? "active-filter" : ""}
-                        onClick={onActiveClickHandler}>Active<span role="img" aria-label="Checked">✔</span></button>
-                <button className={props.filter === "Completed" ? "active-filter" : ""}
-                        onClick={onCompletedClickHandler}>Completed<span role="img" aria-label="Checked">✔</span></button>
+                <button className={props.filter === "All" ? "active-filter" : "button"}
+                        onClick={onAllClickHandler}>All <span role="img" aria-label="Checked">✔</span></button>
+                <button className={props.filter === "Active" ? "active-filter" : "button"}
+                        onClick={onActiveClickHandler}>Active <span role="img" aria-label="Checked">✔</span></button>
+                <button className={props.filter === "Completed" ? "active-filter" : "button"}
+                        onClick={onCompletedClickHandler}>Completed <span role="img" aria-label="Checked">✔</span></button>
             </div>
         </div>
     )

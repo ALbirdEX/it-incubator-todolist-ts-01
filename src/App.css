@@ -1,6 +1,6 @@
 .App {
-    padding: 30px;
-    display: flex;
+    width: 300px;
+    margin: 20px auto;
 }
 
 .App > div {
@@ -8,7 +8,9 @@
 }
 
 .error {
-    border: red 1px solid;
+    border: red 2px solid;
+    border-radius: 2px;
+
 }
 
 .error-message {
@@ -16,9 +18,15 @@
 }
 
 .active-filter {
-    background-color: aquamarine;
+    background-color: #04F327FF;
+    border-radius: 15px;
 }
 
 .is-done {
+    opacity: 0.5;
+}
+
+.button {
+    border-radius: 15px;
     opacity: 0.5;
 }
