@@ -48,25 +48,30 @@ function App() {
     }
 
     function removeTask(taskID: string, todolistID: string) {
-        let todolistTasks = tasks[todolistID]
-        tasks[todolistID] = todolistTasks.filter(task => task.id !== taskID)
-        setTasks({...tasks})
+/*        let todolistTasks = tasks[todolistID]
+        tasks[todolistID] = todolistTasks.filter(task => task.id !== taskID)*/
+        setTasks({...tasks, [todolistID]: tasks[todolistID].filter((t => t.id !== taskID))})
     }
 
     function addTask(title: string, todolistID: string) {
         let task = {id: v1(), title: title, isDone: false};
-        let todolistTasks = tasks[todolistID]
-        tasks[todolistID] = [task, ...todolistTasks]
-        setTasks({...tasks})
+        /*let todolistTasks = tasks[todolistID]
+        tasks[todolistID] = [task, ...todolistTasks]*/
+        setTasks({...tasks, [todolistID]: [task, ...tasks[todolistID]]})
     }
 
     function changeTaskStatus(taskID: string, todolistID: string, isDone: boolean) {
-        let todolistTasks = tasks[todolistID]
-          let task = todolistTasks.find(task => task.id === taskID)
-          if (task) {
-              task.isDone = isDone
-              setTasks({...tasks})
-          }
+        // let todolistTasks = tasks[todolistID]
+        //   let task = todolistTasks.find(task => task.id === taskID)
+        //   if (task) {
+        //       task.isDone = isDone
+        //       setTasks({...tasks})
+        //   }
+      /*  let arrTasks = tasks[todolistID];
+        let mapTasks = arrTasks.map(t => t.id === taskID ? {...t, isDone: isDone} : t)
+        tasks[todolistID] = mapTasks
+        setTasks({...tasks})*/
+        setTasks({...tasks,[todolistID]:tasks[todolistID].map(t => t.id === taskID? {...t, isDone} : t)})
     }
 
     function changeFilter(value: FilterValuesType, todolistID: string) {  //"All" | "Active" | "Completed"
