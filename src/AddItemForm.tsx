@@ -1,7 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 
 type AddItemFormPropsType = {
-    addTask: (title: string) => void
+    addItem: (title: string) => void
 }
 export function AddItemForm(props: AddItemFormPropsType) {
 
@@ -10,7 +10,7 @@ export function AddItemForm(props: AddItemFormPropsType) {
 
     const addTaskHandler = () => {
         if (title.trim() !== "") {
-            props.addTask(title.trim())
+            props.addItem(title.trim())
             setTitle("")
         } else {
             setError("Title is reguired")
