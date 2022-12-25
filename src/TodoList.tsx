@@ -119,11 +119,9 @@ export function TodoList(props: TodoListPropsType) {
                         }
 
                         return (
-                            <div key={task.id} className={task.isDone ? "is-done" : ""}>
-
+                            <div>
                                 <Checkbox color="info"
                                           size="small"
-
                                           checked={task.isDone}
                                           onChange={taskStatusHandler}/>
 
