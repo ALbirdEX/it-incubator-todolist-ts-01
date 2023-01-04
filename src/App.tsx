@@ -9,13 +9,13 @@ import Grid from "@mui/material/Grid";
 
 export type FilterValuesType = "All" | "Active" | "Completed"
 
-export type TodoListsType = {
+export type TodolistType = {
     id: string
     title: string
     filter: FilterValuesType
 }
 
-type TasksStateType = {
+export type TasksStateType = {
     [key: string]: Array<TaskType>
 }
 
@@ -25,7 +25,7 @@ function App() {
     const todolistID1 = v1()
     const todolistID2 = v1()
 
-    const [todolists, setTodolists] = useState<Array<TodoListsType>>([
+    const [todolists, setTodolists] = useState<Array<TodolistType>>([
         {id: todolistID1, title: "What to learn", filter: "All"},
         {id: todolistID2, title: "What to byu", filter: "All"},
     ])
@@ -92,7 +92,7 @@ function App() {
 
     function addTodolist(title: string) {
         let newTodolistId = v1()
-        let newTodolist: TodoListsType = {id: newTodolistId, title: title, filter: "All"}
+        let newTodolist: TodolistType = {id: newTodolistId, title: title, filter: "All"}
         setTodolists([newTodolist, ...todolists])
         setTasks({...tasks, [newTodolistId]: []})
     }
