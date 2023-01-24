@@ -102,7 +102,7 @@ function AppWithReducer() {
                             <Paper elevation={3}
                                    style={{padding: "10px"}}>
                                 <TodoList
-                                    id={tl.id}
+                                    todolistId={tl.id}
                                     title={tl.title}
                                     tasks={tasksForTodolist}
 

@@ -28,18 +28,18 @@ export type TasksStateType = {
 }
 
 function AppWithRedux() {
-
+    console.log("AppWithRedux")
     const dispatch = useDispatch()
 
     const todolists = useSelector<AppRootStateType, Array<TodolistType>>(state => state.todolists)
 
     const tasks = useSelector<AppRootStateType, TasksStateType>(state => state.tasks)
 
-    function removeTask(todolistId: string, taskID: string) {
-        dispatch(removeTaskAC(taskID, todolistId))
-    }
+    const removeTask = useCallback((todolistId: string, taskID: string) => {
+        dispatch(removeTaskAC(todolistId, taskID))
+    }, [dispatch])
 
-    const addTask = useCallback( (todolistId: string, title: string) => {
+    const addTask = useCallback((todolistId: string, title: string) => {
         dispatch(addTaskAC(title, todolistId))
     }, [dispatch])
 
@@ -67,7 +67,6 @@ function AppWithRedux() {
         dispatch(addTodolistAC(title))
     }, [dispatch])
 
-
     return (
         <div>
             <AppBarMenu/>
@@ -81,7 +80,7 @@ function AppWithRedux() {
                             <Paper elevation={3}
                                    style={{padding: "10px"}}>
                                 <TodoList
-                                    id={tl.id}
+                                    todolistId={tl.id}
                                     title={tl.title}
                                     tasks={tasks[tl.id]}
 
@@ -92,8 +91,7 @@ function AppWithRedux() {
                                     changeTaskStatus={changeStatus}
                                     changeTaskTitle={changeTaskTitle}
                                     changeTodolistTitle={changeTodolistTitle}
-                                    filter={tl.filter}
-                                />
+                                    filter={tl.filter}/>
                             </Paper>
                         </Grid>
                     })}

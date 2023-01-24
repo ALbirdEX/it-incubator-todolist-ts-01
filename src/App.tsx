@@ -82,7 +82,7 @@ function App() {
         setTasks({...tasks})
     }
 
-    function changeFilter(value: FilterValuesType, todolistId: string) {  //"All" | "Active" | "Completed"
+    function changeFilter(todolistId: string, value: FilterValuesType) {  //"All" | "Active" | "Completed"
         //let todolist = todolists.map(todolist => todolist.id === todolistId ? {...todolist, filter: value} : todolist)
         setTodolists([...todolists.map(todolist => todolist.id === todolistId ? {
             ...todolist,
@@ -126,7 +126,7 @@ function App() {
                             <Paper elevation={3}
                                    style={{padding: "10px"}}>
                                 <TodoList
-                                          id={tl.id}
+                                          todolistId={tl.id}
                                           title={tl.title}
                                           tasks={tasksForTodolist}
 

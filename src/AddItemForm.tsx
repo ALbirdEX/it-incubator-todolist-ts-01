@@ -1,12 +1,12 @@
-import React, {ChangeEvent, KeyboardEvent, memo, useState} from "react";
+import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 import {Button, TextField} from "@mui/material";
 
 type AddItemFormPropsType = {
     addItem: (title: string) => void
 }
 
-export const AddItemForm = memo((props: AddItemFormPropsType) => {
-
+export const AddItemForm = React.memo((props: AddItemFormPropsType) => {
+    console.log("AddItemForm is called")
     const [title, setTitle] = useState("");
     const [error, setError] = useState<string | null>(null)
 

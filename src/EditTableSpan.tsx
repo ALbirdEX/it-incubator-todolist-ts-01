@@ -1,4 +1,4 @@
-import React, {ChangeEvent, memo, useState} from "react";
+import React, {ChangeEvent, useState} from "react";
 import {TextField} from "@mui/material";
 
 type EditableSpan = {
@@ -6,7 +6,7 @@ type EditableSpan = {
     onChange: (newValue: string) => void
 }
 
-export const EditTableSpan = memo((props: EditableSpan) => {
+export const EditTableSpan = React.memo((props: EditableSpan) => {
 
     console.log("EditTableSpan")
 
